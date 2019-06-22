@@ -1,0 +1,19 @@
+ext {
+
+    commonLibraries = [
+            kotlinStdLib        : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version",
+
+            ktxCore             : 'androidx.core:core-ktx:1.2.0-alpha02',
+            appCompatv7         : 'androidx.appcompat:appcompat:1.1.0-beta01',
+    ]
+
+    designLibraries = [
+            constraintLayout    : 'androidx.constraintlayout:constraintlayout:1.1.3',
+    ]
+
+    testLibraries = [
+            junit               : 'junit:junit:4.12',
+            testRunner          : 'androidx.test:runner:1.1.0-alpha4',
+            espressoCore        : 'androidx.test.espresso:espresso-core:3.1.0-alpha4',
+    ]
+}
