@@ -1,12 +1,15 @@
 package me.vinitagrawal.posts
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import me.vinitagrawal.common.BaseActivity
+import me.vinitagrawal.posts.post.PostsFragment
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        addFragment(R.id.rootContainer, PostsFragment.newInstance())
     }
 }
