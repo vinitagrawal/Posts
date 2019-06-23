@@ -29,7 +29,8 @@ dependencies {
     implementation commonLibraries.appCompatv7
 
     implementation commonLibraries.retrofit2
-    implementation commonLibraries.retrofitGson
+    implementation commonLibraries.rxAdapter
+    implementation commonLibraries.gsonConverter
     implementation commonLibraries.okhttplogging
 }
 repositories {

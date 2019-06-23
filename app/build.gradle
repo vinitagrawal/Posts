@@ -31,9 +31,21 @@ dependencies {
     implementation commonLibraries.kotlinStdLib
     implementation commonLibraries.ktxCore
     implementation commonLibraries.appCompatv7
+
+    implementation commonLibraries.retrofit2
+    implementation commonLibraries.gsonConverter
+    implementation commonLibraries.okhttplogging
+    implementation commonLibraries.rxAndroid
+
+    implementation commonLibraries.lifecycle
     implementation designLibraries.constraintLayout
+    implementation project(':common')
+    implementation project(':network')
+
     testImplementation testLibraries.junit
+    testImplementation testLibraries.mockitoKotlin
+    testImplementation testLibraries.coreTesting
+
     androidTestImplementation testLibraries.testRunner
     androidTestImplementation testLibraries.espressoCore
-    implementation project(':common')
 }
