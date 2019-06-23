@@ -5,6 +5,10 @@ ext {
 
             ktxCore             : 'androidx.core:core-ktx:1.2.0-alpha02',
             appCompatv7         : 'androidx.appcompat:appcompat:1.1.0-beta01',
+
+            retrofit2           : 'com.squareup.retrofit2:retrofit:2.6.0',
+            retrofitGson        : 'com.squareup.retrofit2:converter-gson:2.6.0',
+            okhttplogging       : 'com.squareup.okhttp3:logging-interceptor:3.14.2',
     ]
 
     designLibraries = [
