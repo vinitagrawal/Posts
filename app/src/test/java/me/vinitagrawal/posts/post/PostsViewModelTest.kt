@@ -32,8 +32,7 @@ class PostsViewModelTest {
 
     @Before
     fun setUp() {
-        viewModel = PostsViewModel()
-        viewModel.setUseCase(useCase)
+        viewModel = PostsViewModel(useCase)
     }
 
     @After

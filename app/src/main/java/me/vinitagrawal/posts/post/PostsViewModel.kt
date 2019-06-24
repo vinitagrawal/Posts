@@ -2,17 +2,15 @@ package me.vinitagrawal.posts.post
 
 import android.annotation.SuppressLint
 import android.util.Log
-import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import me.vinitagrawal.posts.post.model.Post
 import me.vinitagrawal.posts.post.usecase.PostsUseCase
+import javax.inject.Inject
 
-class PostsViewModel : ViewModel() {
-
-    private lateinit var useCase: PostsUseCase
+class PostsViewModel @Inject constructor(private val postsUseCase: PostsUseCase) : ViewModel() {
 
     private var postList: MutableLiveData<List<Post>> = MutableLiveData()
 
@@ -23,7 +21,7 @@ class PostsViewModel : ViewModel() {
 
     @SuppressLint("CheckResult")
     private fun fetch() {
-        useCase.getPosts()
+        postsUseCase.getPosts()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { postList.postValue(it) },
@@ -31,8 +29,4 @@ class PostsViewModel : ViewModel() {
             )
     }
 
-    @VisibleForTesting
-    fun setUseCase(postsUseCase: PostsUseCase) {
-        useCase = postsUseCase
-    }
 }

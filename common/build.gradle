@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
@@ -27,6 +28,12 @@ dependencies {
     implementation commonLibraries.kotlinStdLib
     implementation commonLibraries.ktxCore
     implementation commonLibraries.appCompatv7
+
+    implementation commonLibraries.daggerAndroidSupport
+    implementation commonLibraries.lifecycle
+
+    kapt commonLibraries.daggerCompiler
+    kapt commonLibraries.daggerAndroidCompiler
 }
 repositories {
     mavenCentral()
