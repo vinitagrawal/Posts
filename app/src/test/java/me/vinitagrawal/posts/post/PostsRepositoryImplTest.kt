@@ -3,6 +3,8 @@ package me.vinitagrawal.posts.post
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import io.reactivex.Single
+import me.vinitagrawal.posts.post.data.PostsRepositoryImpl
+import me.vinitagrawal.posts.post.data.PostsService
 import me.vinitagrawal.posts.post.model.Post
 import okhttp3.MediaType
 import okhttp3.ResponseBody
@@ -31,8 +33,7 @@ class PostsRepositoryImplTest {
 
     @Before
     fun setUp() {
-        repository = PostsRepositoryImpl()
-        repository.setService(service)
+        repository = PostsRepositoryImpl(service)
     }
 
     @After

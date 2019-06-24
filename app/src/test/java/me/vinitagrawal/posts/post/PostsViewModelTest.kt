@@ -5,6 +5,7 @@ import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import io.reactivex.Single
 import me.vinitagrawal.posts.post.model.Post
+import me.vinitagrawal.posts.post.usecase.PostsUseCase
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before

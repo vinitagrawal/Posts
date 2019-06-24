@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion rootProject.compileSdkVersion
     defaultConfig {
@@ -36,6 +38,11 @@ dependencies {
     implementation commonLibraries.gsonConverter
     implementation commonLibraries.okhttplogging
     implementation commonLibraries.rxAndroid
+
+    implementation commonLibraries.daggerAndroidSupport
+
+    kapt commonLibraries.daggerCompiler
+    kapt commonLibraries.daggerAndroidCompiler
 
     implementation commonLibraries.lifecycle
     implementation designLibraries.constraintLayout

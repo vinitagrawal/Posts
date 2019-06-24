@@ -1,4 +1,4 @@
-package me.vinitagrawal.posts.post
+package me.vinitagrawal.posts.post.data
 
 import io.reactivex.Single
 import me.vinitagrawal.posts.post.model.Post

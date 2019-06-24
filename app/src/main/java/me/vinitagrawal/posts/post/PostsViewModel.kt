@@ -8,10 +8,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import me.vinitagrawal.posts.post.model.Post
+import me.vinitagrawal.posts.post.usecase.PostsUseCase
 
 class PostsViewModel : ViewModel() {
 
-    private var useCase: PostsUseCase = PostsInteractor()
+    private lateinit var useCase: PostsUseCase
 
     private var postList: MutableLiveData<List<Post>> = MutableLiveData()
 

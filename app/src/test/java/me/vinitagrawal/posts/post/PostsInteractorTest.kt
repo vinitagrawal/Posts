@@ -3,7 +3,9 @@ package me.vinitagrawal.posts.post
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import io.reactivex.Single
+import me.vinitagrawal.posts.post.data.PostsRepository
 import me.vinitagrawal.posts.post.model.Post
+import me.vinitagrawal.posts.post.usecase.PostsInteractor
 import okhttp3.MediaType
 import okhttp3.ResponseBody
 import org.junit.*
@@ -27,8 +29,7 @@ class PostsInteractorTest {
 
     @Before
     fun setUp() {
-        useCase = PostsInteractor()
-        useCase.setRepository(repository)
+        useCase = PostsInteractor(repository)
     }
 
     @After
