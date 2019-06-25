@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-class NetworkFactory {
+class NetworkFactory(private val dependency: Dependency) {
 
     private var retrofit: Retrofit? = null
 
@@ -16,7 +16,7 @@ class NetworkFactory {
     private fun getRetrofit(): Retrofit {
         if (retrofit == null) {
             retrofit = Retrofit.Builder()
-                .baseUrl(SERVER_URL)
+                .baseUrl(dependency.getBaseUrl())
                 .client(getOkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -34,7 +34,7 @@ class NetworkFactory {
     private fun getLoggingInterceptor() =
         HttpLoggingInterceptor().setLevel(BODY)
 
-    companion object {
-        private const val SERVER_URL = "http://jsonplaceholder.typicode.com/"
+    interface Dependency {
+        fun getBaseUrl(): String
     }
 }

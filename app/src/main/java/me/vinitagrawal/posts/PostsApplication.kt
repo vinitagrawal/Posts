@@ -7,13 +7,17 @@ import dagger.android.HasActivityInjector
 import me.vinitagrawal.posts.di.DaggerPostsAppComponent
 import javax.inject.Inject
 
-class PostsApplication : Application(), HasActivityInjector {
+open class PostsApplication : Application(), HasActivityInjector {
 
     @Inject
     lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
 
     override fun onCreate() {
         super.onCreate()
+        setupGraph()
+    }
+
+    open fun setupGraph() {
         DaggerPostsAppComponent.create()
             .inject(this)
     }

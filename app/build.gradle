@@ -14,7 +14,8 @@ android {
         targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        testInstrumentationRunner 'me.vinitagrawal.posts.CustomTestRunner'
     }
     buildTypes {
         release {
@@ -53,6 +54,9 @@ dependencies {
     testImplementation testLibraries.mockitoKotlin
     testImplementation testLibraries.coreTesting
 
+    androidTestImplementation testLibraries.androidxJunit
+    androidTestImplementation testLibraries.restMock
     androidTestImplementation testLibraries.testRunner
     androidTestImplementation testLibraries.espressoCore
+    androidTestImplementation testLibraries.testRule
 }
