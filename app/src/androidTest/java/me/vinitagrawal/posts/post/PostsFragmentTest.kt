@@ -10,11 +10,12 @@ import io.appflate.restmock.utils.RequestMatchers.pathContains
 import me.vinitagrawal.posts.HomeActivity
 import me.vinitagrawal.posts.R
 import me.vinitagrawal.posts.UrlMap
-import org.hamcrest.CoreMatchers.allOf
+import org.hamcrest.CoreMatchers
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+
 
 @RunWith(AndroidJUnit4::class)
 class PostsFragmentTest {
@@ -35,7 +36,19 @@ class PostsFragmentTest {
 
         activityRule.launchActivity(null)
 
-        onView(withId(R.id.postsView)).check(matches(allOf(isDisplayed(), withText("[Post(id=1, userId=1, title=sample time, body=sample body)]"))))
+        onView(withId(R.id.postsView))
+                .check(matches(hasDescendant(withText("sample time"))))
     }
 
+    @Test
+    fun shouldShowErrorWhenFailedToFetchPosts() {
+        RESTMockServer.whenGET(pathContains(UrlMap.POSTS_URL))
+                .thenReturnEmpty(400)
+
+        activityRule.launchActivity(null)
+
+        onView(withId(R.id.errorView))
+                .check(matches(CoreMatchers.allOf(isDisplayed(),
+                        withText("Error"))))
+    }
 }

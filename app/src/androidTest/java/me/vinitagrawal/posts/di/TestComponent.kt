@@ -6,6 +6,7 @@ import dagger.Provides
 import dagger.android.AndroidInjectionModule
 import io.appflate.restmock.RESTMockServer
 import me.vinitagrawal.common.di.ViewModelModule
+import me.vinitagrawal.common.utils.Logger
 import me.vinitagrawal.network.NetworkFactory
 import me.vinitagrawal.posts.TestApplication
 import javax.inject.Singleton
@@ -30,5 +31,10 @@ class NetworkTestModule {
             object : NetworkFactory.Dependency {
                 override fun getBaseUrl() = RESTMockServer.getUrl()
             })
+    }
+
+    @Provides
+    fun providesLogger(): Logger {
+        return Logger()
     }
 }

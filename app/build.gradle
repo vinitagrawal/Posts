@@ -53,6 +53,7 @@ dependencies {
     implementation project(':network')
 
     testImplementation testLibraries.junit
+    testImplementation testLibraries.mockitoInline
     testImplementation testLibraries.mockitoKotlin
     testImplementation testLibraries.coreTesting
 

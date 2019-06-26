@@ -7,7 +7,7 @@ import org.junit.rules.TestRule
 import org.junit.runner.Description
 import org.junit.runners.model.Statement
 
-class Rx2SchedulersOverrideRule : TestRule {
+class RxSchedulersOverrideRule : TestRule {
 
     override fun apply(base: Statement?, description: Description?): Statement =
         object : Statement() {

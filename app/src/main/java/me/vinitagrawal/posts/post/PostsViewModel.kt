@@ -1,32 +1,36 @@
 package me.vinitagrawal.posts.post
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
-import me.vinitagrawal.posts.post.model.Post
+import me.vinitagrawal.common.core.BaseViewModel
+import me.vinitagrawal.common.utils.Logger
+import me.vinitagrawal.posts.post.model.PostsState
+import me.vinitagrawal.posts.post.model.PostsState.*
 import me.vinitagrawal.posts.post.usecase.PostsUseCase
 import javax.inject.Inject
 
-class PostsViewModel @Inject constructor(private val postsUseCase: PostsUseCase) : ViewModel() {
+class PostsViewModel @Inject constructor(private val postsUseCase: PostsUseCase,
+                                         private val logger: Logger) : BaseViewModel<PostsState>() {
 
-    private var postList: MutableLiveData<List<Post>> = MutableLiveData()
+    private var postList: MutableLiveData<PostsState> = MutableLiveData()
 
-    fun getPosts(): LiveData<List<Post>> {
-        fetch()
+    override fun getData(): LiveData<PostsState> {
         return postList
     }
 
     @SuppressLint("CheckResult")
-    private fun fetch() {
+    override fun onRender() {
         postsUseCase.getPosts()
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { postList.postValue(it) },
-                { Log.e("PostViewModel", it.message) }
-            )
+            .doOnSubscribe { postList.setValue(LoadingState) }
+            .doOnEvent { _, _ -> postList.setValue(LoadCompleteState) }
+            .subscribe({
+                postList.setValue(DataState(it))
+            }, {
+                logger.logException(it)
+                postList.setValue(ErrorState)
+            })
     }
-
 }

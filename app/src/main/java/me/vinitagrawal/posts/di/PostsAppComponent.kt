@@ -2,7 +2,7 @@ package me.vinitagrawal.posts.di
 
 import dagger.Component
 import dagger.android.AndroidInjectionModule
-import me.vinitagrawal.common.di.ViewModelModule
+import me.vinitagrawal.common.di.CommonsModule
 import me.vinitagrawal.network.di.NetworkModule
 import me.vinitagrawal.posts.PostsApplication
 import javax.inject.Singleton
@@ -12,7 +12,7 @@ import javax.inject.Singleton
     modules = [
         AndroidInjectionModule::class,
         NetworkModule::class,
-        ViewModelModule::class,
+        CommonsModule::class,
         ActivityBindingModule::class]
 )
 interface PostsAppComponent {

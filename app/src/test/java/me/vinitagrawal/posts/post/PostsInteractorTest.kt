@@ -20,7 +20,7 @@ import retrofit2.Response
 class PostsInteractorTest {
 
     @get:Rule
-    val rx2SchedulersRule = Rx2SchedulersOverrideRule()
+    val rx2SchedulersRule = RxSchedulersOverrideRule()
 
     @Mock
     private lateinit var repository: PostsRepository

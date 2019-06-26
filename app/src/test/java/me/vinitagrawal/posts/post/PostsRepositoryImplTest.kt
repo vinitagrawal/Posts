@@ -24,7 +24,7 @@ import retrofit2.Response
 class PostsRepositoryImplTest {
 
     @get:Rule
-    val rx2SchedulersRule = Rx2SchedulersOverrideRule()
+    val rx2SchedulersRule = RxSchedulersOverrideRule()
 
     @Mock
     private lateinit var service: PostsService
