@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.MapKey
 import dagger.Module
 import dagger.Provides
-import me.vinitagrawal.common.ViewModelFactory
+import me.vinitagrawal.common.core.ViewModelFactory
 import javax.inject.Provider
 import javax.inject.Singleton
 import kotlin.reflect.KClass

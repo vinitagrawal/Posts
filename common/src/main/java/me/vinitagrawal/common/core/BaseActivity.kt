@@ -1,4 +1,4 @@
-package me.vinitagrawal.common
+package me.vinitagrawal.common.core
 
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity

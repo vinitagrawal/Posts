@@ -1,6 +1,15 @@
 package me.vinitagrawal.posts.post.model
 
-data class Post(val id: Long,
+import com.google.gson.annotations.SerializedName
+
+data class Post(@SerializedName("id")
+                val id: Long,
+                @SerializedName("userId")
                 val userId: Long,
+                @SerializedName("title")
                 val title: String,
-                val body: String)
+                @SerializedName("body")
+                val body: String) {
+
+    fun getPreview() = body.substring(0, 50)
+}

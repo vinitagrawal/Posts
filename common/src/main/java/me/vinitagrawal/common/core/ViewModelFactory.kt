@@ -1,4 +1,4 @@
-package me.vinitagrawal.common
+package me.vinitagrawal.common.core
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

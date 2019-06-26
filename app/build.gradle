@@ -47,6 +47,8 @@ dependencies {
 
     implementation commonLibraries.lifecycle
     implementation designLibraries.constraintLayout
+    implementation designLibraries.recyclerView
+    implementation designLibraries.cardView
     implementation project(':common')
     implementation project(':network')
 

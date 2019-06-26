@@ -4,29 +4,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import me.vinitagrawal.common.BaseFragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import me.vinitagrawal.common.core.BaseFragment
+import me.vinitagrawal.common.utils.bindView
 import me.vinitagrawal.posts.R
 import me.vinitagrawal.posts.post.PostsViewModel
 
 class PostsFragment : BaseFragment<PostsViewModel>(PostsViewModel::class.java) {
 
-    private lateinit var postsView: TextView
+    private val postsView by bindView<RecyclerView>(R.id.postsView)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.fragment_post, container, false)
     }
 
-    override fun bindViews(view: View) {
-        postsView = view.findViewById(R.id.postsView)
-    }
-
     override fun observeData() {
         viewModel.getPosts()
-            .observe(
-                { lifecycle },
-                { postsView.text = it.toString() }
-            )
+            .observe({ lifecycle }, {
+                postsView?.apply {
+                    layoutManager = LinearLayoutManager(context)
+                    adapter = PostsAdapter(it)
+                }
+            })
     }
 
     companion object {

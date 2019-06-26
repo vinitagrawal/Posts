@@ -1,4 +1,4 @@
-package me.vinitagrawal.common
+package me.vinitagrawal.common.core
 
 import android.content.Context
 import android.os.Bundle
@@ -16,7 +16,6 @@ abstract class BaseFragment<VM : ViewModel>(private val viewModelClass: Class<VM
 
     lateinit var viewModel: VM
 
-    abstract fun bindViews(view: View)
     abstract fun observeData()
 
     override fun onAttach(context: Context) {
@@ -27,7 +26,6 @@ abstract class BaseFragment<VM : ViewModel>(private val viewModelClass: Class<VM
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(viewModelClass)
-        bindViews(view)
         observeData()
     }
 }

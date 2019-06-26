@@ -38,6 +38,8 @@ dependencies {
 
     kapt commonLibraries.daggerCompiler
     kapt commonLibraries.daggerAndroidCompiler
+
+    implementation designLibraries.recyclerView
 }
 repositories {
     mavenCentral()

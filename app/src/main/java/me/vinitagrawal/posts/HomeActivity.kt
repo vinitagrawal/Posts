@@ -6,7 +6,7 @@ import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
-import me.vinitagrawal.common.BaseActivity
+import me.vinitagrawal.common.core.BaseActivity
 import me.vinitagrawal.posts.post.view.PostsFragment
 import javax.inject.Inject
 
