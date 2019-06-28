@@ -7,5 +7,6 @@ sealed class PostsState : UIState {
     object LoadingState : PostsState()
     object LoadCompleteState : PostsState()
     object ErrorState : PostsState()
+    object EmptyState : PostsState()
     data class DataState(val posts: List<Post>) : PostsState()
 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import me.vinitagrawal.common.core.BaseViewModel
 import me.vinitagrawal.common.utils.Logger
+import me.vinitagrawal.common.utils.doOnEvent
 import me.vinitagrawal.posts.post.model.PostsState
 import me.vinitagrawal.posts.post.model.PostsState.*
 import me.vinitagrawal.posts.post.usecase.PostsUseCase
@@ -22,15 +23,19 @@ class PostsViewModel @Inject constructor(private val postsUseCase: PostsUseCase,
 
     @SuppressLint("CheckResult")
     override fun onRender() {
-        postsUseCase.getPosts()
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { postList.setValue(LoadingState) }
-            .doOnEvent { _, _ -> postList.setValue(LoadCompleteState) }
-            .subscribe({
-                postList.setValue(DataState(it))
-            }, {
-                logger.logException(it)
-                postList.setValue(ErrorState)
-            })
+        if (postList.value !is DataState)
+            postsUseCase.getPosts()
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe { postList.value = LoadingState }
+                    .doOnEvent { postList.value = LoadCompleteState }
+                    .subscribe({
+                        if (it.isNotEmpty())
+                            postList.value = DataState(it)
+                        else
+                            postList.value = EmptyState
+                    }, {
+                        logger.logException(it)
+                        postList.value = ErrorState
+                    })
     }
 }

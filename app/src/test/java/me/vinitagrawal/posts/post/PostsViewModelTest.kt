@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nhaarman.mockitokotlin2.check
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
-import io.reactivex.Single
+import io.reactivex.Observable
 import me.vinitagrawal.common.utils.Logger
 import me.vinitagrawal.posts.post.model.Post
 import me.vinitagrawal.posts.post.model.PostsState
@@ -59,7 +59,7 @@ class PostsViewModelTest {
     @Test
     fun `should fetch all posts`() {
         val postList = listOf<Post>(mock(Post::class.java))
-        `when`(useCase.getPosts()).thenReturn(Single.just(postList))
+        `when`(useCase.getPosts()).thenReturn(Observable.just(postList))
 
         viewModel.onRender()
 
@@ -74,7 +74,7 @@ class PostsViewModelTest {
         val response = Response.error<String>(400,
             ResponseBody.create(MediaType.parse("application/json"), "Something went wrong"))
         val exception = HttpException(response)
-        `when`(useCase.getPosts()).thenReturn(Single.error(exception))
+        `when`(useCase.getPosts()).thenReturn(Observable.error(exception))
 
         viewModel.onRender()
 

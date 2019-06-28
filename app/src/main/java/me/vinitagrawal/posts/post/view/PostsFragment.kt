@@ -20,6 +20,7 @@ class PostsFragment : BaseFragment<PostsViewModel>(PostsViewModel::class.java) {
     private val postsView by bindView<RecyclerView>(R.id.postsView)
     private val loadingView by bindView<ProgressBar>(R.id.loadingView)
     private val errorView by bindView<TextView>(R.id.errorView)
+    private val noDataView by bindView<TextView>(R.id.noDataView)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.fragment_post, container, false)
@@ -31,6 +32,7 @@ class PostsFragment : BaseFragment<PostsViewModel>(PostsViewModel::class.java) {
                 is LoadingState -> showLoadingView()
                 is LoadCompleteState -> hideLoadingView()
                 is ErrorState -> showErrorView()
+                is EmptyState -> showNoDataView()
                 is DataState -> renderPosts(state.posts)
             }
         }
@@ -48,12 +50,17 @@ class PostsFragment : BaseFragment<PostsViewModel>(PostsViewModel::class.java) {
         errorView.visibility = View.VISIBLE
     }
 
+    private fun showNoDataView() {
+        noDataView.visibility = View.VISIBLE
+    }
+
     private fun renderPosts(posts: List<Post>) {
         postsView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = PostsAdapter(posts)
             visibility = View.VISIBLE
         }
+        noDataView.visibility = View.GONE
     }
 
     companion object {

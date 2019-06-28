@@ -35,6 +35,7 @@ dependencies {
 
     implementation commonLibraries.daggerAndroidSupport
     implementation commonLibraries.lifecycle
+    implementation commonLibraries.rxAndroid
 
     kapt commonLibraries.daggerCompiler
     kapt commonLibraries.daggerAndroidCompiler

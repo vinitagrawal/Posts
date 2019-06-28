@@ -2,7 +2,7 @@ package me.vinitagrawal.posts.post
 
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
-import io.reactivex.Single
+import io.reactivex.Observable
 import me.vinitagrawal.posts.post.data.PostsRepository
 import me.vinitagrawal.posts.post.model.Post
 import me.vinitagrawal.posts.post.usecase.PostsInteractor
@@ -40,7 +40,7 @@ class PostsInteractorTest {
     @Test
     fun `should fetch posts`() {
         val posts = listOf<Post>()
-        `when`(repository.getPosts()).thenReturn(Single.just(posts))
+        `when`(repository.getPosts()).thenReturn(Observable.just(posts))
 
         useCase.getPosts()
             .test()
@@ -59,7 +59,7 @@ class PostsInteractorTest {
         val response = Response.error<String>(400,
             ResponseBody.create(MediaType.parse("application/json"), "Something went wrong"))
         val exception = HttpException(response)
-        `when`(repository.getPosts()).thenReturn(Single.error(exception))
+        `when`(repository.getPosts()).thenReturn(Observable.error(exception))
 
         repository.getPosts()
             .test()

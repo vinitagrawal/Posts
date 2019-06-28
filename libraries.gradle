@@ -2,6 +2,7 @@ ext {
     retrofitVersion = "2.6.0"
     mockitoVersion = "2.24.5"
     daggerVersion = "2.23.2"
+    roomVersion = "2.1.0"
 
     commonLibraries = [
             kotlinStdLib        : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version",
@@ -20,6 +21,10 @@ ext {
             daggerAndroidSupport: "com.google.dagger:dagger-android-support:$daggerVersion",
             daggerCompiler      : "com.google.dagger:dagger-compiler:$daggerVersion",
             daggerAndroidCompiler: "com.google.dagger:dagger-android-processor:$daggerVersion",
+
+            room                : "androidx.room:room-ktx:$roomVersion",
+            rxRoom              : "androidx.room:room-rxjava2:$roomVersion",
+            roomCompiler        : "androidx.room:room-compiler:$roomVersion",
 
             lifecycle           : 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha01'
     ]

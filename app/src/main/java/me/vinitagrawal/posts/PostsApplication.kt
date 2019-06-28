@@ -18,7 +18,9 @@ open class PostsApplication : Application(), HasActivityInjector {
     }
 
     open fun setupGraph() {
-        DaggerPostsAppComponent.create()
+        DaggerPostsAppComponent.builder()
+            .with(applicationContext)
+            .build()
             .inject(this)
     }
 

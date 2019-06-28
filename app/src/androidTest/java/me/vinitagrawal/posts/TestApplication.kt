@@ -5,7 +5,9 @@ import me.vinitagrawal.posts.di.DaggerTestComponent
 class TestApplication : PostsApplication() {
 
     override fun setupGraph() {
-        DaggerTestComponent.create()
-            .inject(this)
+        DaggerTestComponent.builder()
+                .with(applicationContext)
+                .build()
+                .inject(this)
     }
 }

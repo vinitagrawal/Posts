@@ -20,7 +20,8 @@ class HomeActivity : BaseActivity(), HasSupportFragmentInjector {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        addFragment(R.id.rootContainer, PostsFragment.newInstance())
+        if (savedInstanceState == null)
+            addFragment(R.id.rootContainer, PostsFragment.newInstance())
     }
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> {

@@ -19,10 +19,10 @@ import me.vinitagrawal.posts.post.usecase.PostsUseCase
 abstract class PostsModule {
 
     @Binds
-    abstract fun bindsPostsRepository(postsRepositoryImpl: PostsRepositoryImpl) : PostsRepository
+    abstract fun bindsPostsRepository(postsRepositoryImpl: PostsRepositoryImpl): PostsRepository
 
     @Binds
-    abstract fun bindsPostsUseCase(postsInteractor: PostsInteractor) : PostsUseCase
+    abstract fun bindsPostsUseCase(postsInteractor: PostsInteractor): PostsUseCase
 }
 
 @Module

@@ -41,14 +41,11 @@ class PostsFragmentTest {
     }
 
     @Test
-    fun shouldShowErrorWhenFailedToFetchPosts() {
-        RESTMockServer.whenGET(pathContains(UrlMap.POSTS_URL))
-                .thenReturnEmpty(400)
-
+    fun shouldShowEmptyStateWhenThereAreNoPosts() {
         activityRule.launchActivity(null)
 
-        onView(withId(R.id.errorView))
+        onView(withId(R.id.noDataView))
                 .check(matches(CoreMatchers.allOf(isDisplayed(),
-                        withText("Error"))))
+                        withText("No Posts"))))
     }
 }
