@@ -37,5 +37,6 @@ class PostsViewModel @Inject constructor(private val postsUseCase: PostsUseCase,
                         logger.logException(it)
                         postList.value = ErrorState
                     })
+                    .autoDispose()
     }
 }
