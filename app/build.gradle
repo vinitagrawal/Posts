@@ -58,6 +58,7 @@ dependencies {
     implementation designLibraries.constraintLayout
     implementation designLibraries.recyclerView
     implementation designLibraries.cardView
+    implementation designLibraries.shimmerView
     implementation project(':common')
     implementation project(':network')
 

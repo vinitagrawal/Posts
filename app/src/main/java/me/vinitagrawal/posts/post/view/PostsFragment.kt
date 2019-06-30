@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +18,7 @@ import me.vinitagrawal.posts.post.model.PostsState.*
 class PostsFragment : BaseFragment<PostsViewModel>(PostsViewModel::class.java) {
 
     private val postsView by bindView<RecyclerView>(R.id.postsView)
-    private val loadingView by bindView<ProgressBar>(R.id.loadingView)
+    private val loadingView by bindView<LinearLayout>(R.id.loadingView)
     private val errorView by bindView<TextView>(R.id.errorView)
     private val noDataView by bindView<TextView>(R.id.noDataView)
 
