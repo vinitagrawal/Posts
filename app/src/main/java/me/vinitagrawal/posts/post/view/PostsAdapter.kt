@@ -26,7 +26,7 @@ class PostsAdapter(private val postList: List<Post>) : RecyclerView.Adapter<Post
 
         fun bind(post: Post) {
             title.text = post.title
-            preview.text = post.getPreview()
+            preview.text = post.body
         }
     }
 }

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Posts</string>
+    <string name="error_text">Error</string>
+    <string name="no_posts_text">No Posts</string>
 </resources>

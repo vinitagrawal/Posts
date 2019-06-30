@@ -4,27 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    android:elevation="12dp">
+    android:layout_marginLeft="@dimen/gap"
+    android:layout_marginRight="@dimen/gap"
+    android:layout_marginBottom="@dimen/gap"
+    android:elevation="@dimen/elevation">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="@dimen/gap">
 
         <TextView
             android:id="@+id/title"
+            style="?attr/primaryTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Title" />
 
         <TextView
             android:id="@+id/preview"
+            style="?attr/secondaryTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/gap_small"
+            android:ellipsize="end"
+            android:maxLines="3"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title"
             tools:text="Preview" />

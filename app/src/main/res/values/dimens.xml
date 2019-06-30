@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="match_constraint">0dp</dimen>
+
+    <dimen name="gap_small">8dp</dimen>
+    <dimen name="gap">16dp</dimen>
+
+    <dimen name="elevation">12dp</dimen>
+
+    <dimen name="shimmer_width">200dp</dimen>
+    <dimen name="shimmer_height">16dp</dimen>
+
+    <dimen name="text_size_primary">20dp</dimen>
+    <dimen name="text_size_secondary">16dp</dimen>
+
+    <dimen name="line_spacing">4dp</dimen>
+</resources>

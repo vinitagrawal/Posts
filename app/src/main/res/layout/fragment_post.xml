@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="16dp"
-    android:paddingBottom="16dp">
+    android:paddingTop="@dimen/gap"
+    android:paddingBottom="@dimen/gap">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/postsView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="@dimen/match_constraint"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -29,7 +29,8 @@
         android:id="@+id/errorView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Error"
+        style="?attr/primaryTextView"
+        android:text="@string/error_text"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -41,7 +42,8 @@
         android:id="@+id/noDataView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No Posts"
+        style="?attr/primaryTextView"
+        android:text="@string/no_posts_text"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

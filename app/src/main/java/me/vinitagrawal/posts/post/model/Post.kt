@@ -25,8 +25,6 @@ data class Post(@SerializedName("id")
                 @ColumnInfo(name = BODY)
                 val body: String) {
 
-    fun getPreview() = body.substring(0, 50)
-
     class Contract {
         companion object {
             const val TABLE_NAME = "Post"
