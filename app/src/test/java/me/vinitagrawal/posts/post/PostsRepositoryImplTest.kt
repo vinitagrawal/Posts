@@ -9,6 +9,7 @@ import me.vinitagrawal.common.utils.Logger
 import me.vinitagrawal.posts.post.data.PostDao
 import me.vinitagrawal.posts.post.data.PostsRepositoryImpl
 import me.vinitagrawal.posts.post.data.PostsService
+import me.vinitagrawal.posts.post.model.Comment
 import me.vinitagrawal.posts.post.model.Post
 import okhttp3.MediaType
 import okhttp3.ResponseBody
@@ -150,4 +151,41 @@ class PostsRepositoryImplTest {
 
         verify(postDao).getPostById(postId)
     }
+
+    @Test
+    fun `should fetch comments for post id`() {
+        val comments = listOf(mock(Comment::class.java))
+        val postId = 1L
+        `when`(service.getCommentsForPost(postId)).thenReturn(Single.just(comments))
+
+        repository.getCommentsForPost(postId)
+            .test()
+            .assertComplete()
+            .assertNoErrors()
+            .assertValue {
+                assertEquals(comments, it)
+                true
+            }
+
+        verify(service).getCommentsForPost(postId)
+    }
+
+    @Test
+    fun `should handle failure on fetching comments`() {
+        val response = Response.error<String>(400,
+            ResponseBody.create(MediaType.parse("application/json"), "Something went wrong"))
+        val exception = HttpException(response)
+        val postId = 1L
+        `when`(service.getCommentsForPost(postId)).thenReturn(Single.error(exception))
+
+        repository.getCommentsForPost(postId)
+            .test()
+            .assertNotComplete()
+            .assertError {
+                it is Exception
+            }
+
+        verify(service).getCommentsForPost(postId)
+    }
+
 }

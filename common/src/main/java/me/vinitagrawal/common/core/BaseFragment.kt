@@ -37,7 +37,7 @@ abstract class BaseFragment<VM : BaseViewModel>(private val viewModelClass: Clas
     }
 
     fun <T : Fragment> addFragment(@IdRes id: Int, fragment: T) {
-        activity?.let {
+        activity?.also {
             it.supportFragmentManager
                     .beginTransaction()
                     .add(id, fragment, fragment.tag)

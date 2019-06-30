@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import me.vinitagrawal.common.core.BaseViewModel
 import me.vinitagrawal.common.utils.Logger
+import me.vinitagrawal.posts.post.model.Post
 import me.vinitagrawal.posts.post.model.PostDetailState
 import me.vinitagrawal.posts.post.model.PostDetailState.*
 import me.vinitagrawal.posts.post.usecase.PostsUseCase
@@ -26,13 +27,26 @@ class PostDetailViewModel @Inject constructor(private val postsUseCase: PostsUse
             postsUseCase.getPostById(postId)
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnSubscribe { postDetail.value = Loading }
-                    .doOnEvent { _, _ -> postDetail.value = LoadComplete }
+                    .doOnError { postDetail.value = LoadComplete }
                     .subscribe({
-                        postDetail.value = Data(it)
+                        getComments(it)
                     }, {
                         logger.logException(it)
                         postDetail.value = Error
                     })
                     .autoDispose()
+    }
+
+    private fun getComments(post: Post) {
+        postsUseCase.getCommentsForPost(post.id)
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnEvent { _, _ -> postDetail.value = LoadComplete }
+                .subscribe({
+                    postDetail.value = Data(post, it)
+                }, {
+                    logger.logException(it)
+                    postDetail.value = Data(post)
+                })
+                .autoDispose()
     }
 }

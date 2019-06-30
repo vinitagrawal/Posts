@@ -9,8 +9,9 @@ import me.vinitagrawal.common.core.BaseFragment
 import me.vinitagrawal.common.utils.bindView
 import me.vinitagrawal.posts.R
 import me.vinitagrawal.posts.post.PostDetailViewModel
+import me.vinitagrawal.posts.post.model.Comment
 import me.vinitagrawal.posts.post.model.Post
-import me.vinitagrawal.posts.post.model.PostDetailState
+import me.vinitagrawal.posts.post.model.PostDetailState.Data
 
 class PostDetailFragment : BaseFragment<PostDetailViewModel>(PostDetailViewModel::class.java) {
 
@@ -25,12 +26,12 @@ class PostDetailFragment : BaseFragment<PostDetailViewModel>(PostDetailViewModel
         viewModel.getData(arguments?.getLong(KEY_POST_ID) ?: 0)
                 .observe { state ->
                     when (state) {
-                        is PostDetailState.Data -> renderPost(state.post)
+                        is Data -> renderPost(state.post, state.comments)
                     }
                 }
     }
 
-    private fun renderPost(post: Post) {
+    private fun renderPost(post: Post, comments: List<Comment>?) {
         postTitle.text = post.title
         postBody.text = post.body
     }

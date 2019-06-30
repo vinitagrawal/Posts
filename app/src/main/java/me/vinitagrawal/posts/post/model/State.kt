@@ -14,5 +14,5 @@ sealed class PostDetailState {
     object Loading : PostDetailState()
     object LoadComplete : PostDetailState()
     object Error : PostDetailState()
-    data class Data(val post: Post) : PostDetailState()
+    data class Data(val post: Post, val comments: List<Comment>? = null) : PostDetailState()
 }
