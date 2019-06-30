@@ -105,7 +105,7 @@ class PostsRepositoryImplTest {
     }
 
     @Test
-    fun `should handle failure to while fetching posts from database`() {
+    fun `should handle failure while fetching posts from database`() {
         `when`(postDao.getAllPosts()).thenReturn(Observable.error(Exception()))
 
         repository.getPosts()
@@ -116,5 +116,38 @@ class PostsRepositoryImplTest {
                 }
 
         verify(postDao).getAllPosts()
+    }
+
+    @Test
+    fun `should fetch post by id`() {
+        val post = Post(1, 1, "title", "body")
+        val postId = 1L
+        `when`(postDao.getPostById(postId)).thenReturn(Single.just(post))
+
+        repository.getPostById(postId)
+                .test()
+                .assertComplete()
+                .assertNoErrors()
+                .assertValue {
+                    assertEquals("title", it.title)
+                    true
+                }
+
+        verify(postDao).getPostById(postId)
+    }
+
+    @Test
+    fun `should handle failure while fetching post by id`() {
+        val postId = 1L
+        `when`(postDao.getPostById(postId)).thenReturn(Single.error(Exception()))
+
+        repository.getPostById(postId)
+                .test()
+                .assertNotComplete()
+                .assertError {
+                    it is Exception
+                }
+
+        verify(postDao).getPostById(postId)
     }
 }

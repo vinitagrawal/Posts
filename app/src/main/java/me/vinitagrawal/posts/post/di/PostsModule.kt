@@ -8,6 +8,7 @@ import dagger.multibindings.IntoMap
 import me.vinitagrawal.common.di.ViewModelModule.ViewModelKey
 import me.vinitagrawal.common.utils.Logger
 import me.vinitagrawal.network.NetworkFactory
+import me.vinitagrawal.posts.post.PostDetailViewModel
 import me.vinitagrawal.posts.post.PostsViewModel
 import me.vinitagrawal.posts.post.data.PostsRepository
 import me.vinitagrawal.posts.post.data.PostsRepositoryImpl
@@ -31,9 +32,17 @@ class PostsDepsModule {
     @Provides
     @IntoMap
     @ViewModelKey(PostsViewModel::class)
-    fun providesWeatherViewModel(postsUseCase: PostsUseCase,
+    fun providesPostViewModel(postsUseCase: PostsUseCase,
                                  logger: Logger): ViewModel {
         return PostsViewModel(postsUseCase, logger)
+    }
+
+    @Provides
+    @IntoMap
+    @ViewModelKey(PostDetailViewModel::class)
+    fun providesPostDetailViewModel(postsUseCase: PostsUseCase,
+                                 logger: Logger): ViewModel {
+        return PostDetailViewModel(postsUseCase, logger)
     }
 
     @Provides

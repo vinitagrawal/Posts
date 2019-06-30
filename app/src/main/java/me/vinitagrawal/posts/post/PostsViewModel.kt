@@ -13,29 +13,29 @@ import me.vinitagrawal.posts.post.usecase.PostsUseCase
 import javax.inject.Inject
 
 class PostsViewModel @Inject constructor(private val postsUseCase: PostsUseCase,
-                                         private val logger: Logger) : BaseViewModel<PostsState>() {
+                                         private val logger: Logger) : BaseViewModel() {
 
     private var postList: MutableLiveData<PostsState> = MutableLiveData()
 
-    override fun getData(): LiveData<PostsState> {
+    fun getData(): LiveData<PostsState> {
         return postList
     }
 
     @SuppressLint("CheckResult")
     override fun onRender() {
-        if (postList.value !is DataState)
+        if (postList.value !is Data)
             postsUseCase.getPosts()
                     .observeOn(AndroidSchedulers.mainThread())
-                    .doOnSubscribe { postList.value = LoadingState }
-                    .doOnEvent { postList.value = LoadCompleteState }
+                    .doOnSubscribe { postList.value = Loading }
+                    .doOnEvent { postList.value = LoadComplete }
                     .subscribe({
                         if (it.isNotEmpty())
-                            postList.value = DataState(it)
+                            postList.value = Data(it)
                         else
-                            postList.value = EmptyState
+                            postList.value = Empty
                     }, {
                         logger.logException(it)
-                        postList.value = ErrorState
+                        postList.value = Error
                     })
                     .autoDispose()
     }

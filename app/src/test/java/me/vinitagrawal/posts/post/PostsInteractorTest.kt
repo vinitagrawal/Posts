@@ -3,6 +3,7 @@ package me.vinitagrawal.posts.post
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import io.reactivex.Observable
+import io.reactivex.Single
 import me.vinitagrawal.posts.post.data.PostsRepository
 import me.vinitagrawal.posts.post.model.Post
 import me.vinitagrawal.posts.post.usecase.PostsInteractor
@@ -69,5 +70,41 @@ class PostsInteractorTest {
             }
 
         verify(repository).getPosts()
+    }
+
+    @Test
+    fun `should fetch post by id`() {
+        val post = Post(1, 1, "title", "body")
+        val postId = 1L
+        `when`(repository.getPostById(postId)).thenReturn(Single.just(post))
+
+        useCase.getPostById(postId)
+            .test()
+            .assertComplete()
+            .assertNoErrors()
+            .assertValue {
+                Assert.assertEquals("title", it.title)
+                true
+            }
+
+        verify(repository).getPostById(postId)
+    }
+
+    @Test
+    fun `should handle error received while fetching post by id`() {
+        val response = Response.error<String>(400,
+            ResponseBody.create(MediaType.parse("application/json"), "Something went wrong"))
+        val exception = HttpException(response)
+        val postId = 1L
+        `when`(repository.getPostById(postId)).thenReturn(Single.error(exception))
+
+        repository.getPostById(postId)
+            .test()
+            .assertNotComplete()
+            .assertError {
+                it is HttpException && it.code() == 400
+            }
+
+        verify(repository).getPostById(postId)
     }
 }

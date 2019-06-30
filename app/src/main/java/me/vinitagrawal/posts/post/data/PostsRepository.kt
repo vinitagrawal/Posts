@@ -2,6 +2,7 @@ package me.vinitagrawal.posts.post.data
 
 import android.annotation.SuppressLint
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import me.vinitagrawal.common.utils.Logger
 import me.vinitagrawal.posts.post.model.Post
@@ -9,6 +10,7 @@ import javax.inject.Inject
 
 interface PostsRepository {
     fun getPosts(): Observable<List<Post>>
+    fun getPostById(postId: Long): Single<Post>
 }
 
 class PostsRepositoryImpl @Inject constructor(private val service: PostsService,
@@ -22,6 +24,11 @@ class PostsRepositoryImpl @Inject constructor(private val service: PostsService,
                     if (it.isEmpty())
                         updatePosts()
                 }
+    }
+
+    override fun getPostById(postId: Long): Single<Post> {
+        return postDao.getPostById(postId)
+            .subscribeOn(Schedulers.io())
     }
 
     @SuppressLint("CheckResult")

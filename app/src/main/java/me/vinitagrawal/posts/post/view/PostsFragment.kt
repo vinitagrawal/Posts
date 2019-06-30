@@ -29,11 +29,11 @@ class PostsFragment : BaseFragment<PostsViewModel>(PostsViewModel::class.java) {
     override fun observeData() {
         viewModel.getData().observe { state ->
             when (state) {
-                is LoadingState -> showLoadingView()
-                is LoadCompleteState -> hideLoadingView()
-                is ErrorState -> showErrorView()
-                is EmptyState -> showNoDataView()
-                is DataState -> renderPosts(state.posts)
+                is Loading -> showLoadingView()
+                is LoadComplete -> hideLoadingView()
+                is Error -> showErrorView()
+                is Empty -> showNoDataView()
+                is Data -> renderPosts(state.posts)
             }
         }
     }
@@ -56,8 +56,8 @@ class PostsFragment : BaseFragment<PostsViewModel>(PostsViewModel::class.java) {
 
     private fun renderPosts(posts: List<Post>) {
         postsView.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = PostsAdapter(posts)
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = PostsAdapter(posts) { addFragment(R.id.rootContainer, PostDetailFragment.newInstance(it)) }
             visibility = View.VISIBLE
         }
         noDataView.visibility = View.GONE
