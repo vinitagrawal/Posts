@@ -7,5 +7,6 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="primaryTextView">@style/TextView.Primary</item>
         <item name="secondaryTextView">@style/TextView.Secondary</item>
+        <item name="tertiaryTextView">@style/TextView.Tertiary</item>
     </style>
 </resources>

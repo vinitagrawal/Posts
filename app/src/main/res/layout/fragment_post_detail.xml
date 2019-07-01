@@ -3,12 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffffff"
         android:orientation="vertical">
 
         <TextView
@@ -24,14 +23,28 @@
             style="?attr/secondaryTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/gap_small"
+            android:layout_margin="@dimen/gap"
             tools:text="Post Body" />
+
+        <TextView
+            android:id="@+id/commentCount"
+            style="?attr/tertiaryTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="@dimen/gap_small"
+            tools:text="5 comments"/>
+
+        <View
+            style="@style/Divider.Plain"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/gap_small" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/commentsView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="@dimen/gap_small"
+            android:layout_marginTop="@dimen/gap_small"
             android:visibility="gone"
             tools:listitem="@layout/post_tile"
             tools:visibility="visible" />

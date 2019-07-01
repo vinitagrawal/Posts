@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import me.vinitagrawal.common.core.BaseFragment
 import me.vinitagrawal.common.utils.bindView
 import me.vinitagrawal.posts.R
@@ -17,6 +19,8 @@ class PostDetailFragment : BaseFragment<PostDetailViewModel>(PostDetailViewModel
 
     private val postTitle by bindView<TextView>(R.id.postTitle)
     private val postBody by bindView<TextView>(R.id.postBody)
+    private val commentCount by bindView<TextView>(R.id.commentCount)
+    private val commentsView by bindView<RecyclerView>(R.id.commentsView)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_post_detail, container, false)
@@ -34,6 +38,17 @@ class PostDetailFragment : BaseFragment<PostDetailViewModel>(PostDetailViewModel
     private fun renderPost(post: Post, comments: List<Comment>?) {
         postTitle.text = post.title
         postBody.text = post.body
+
+        comments?.let { renderComments(it) }
+    }
+
+    private fun renderComments(comments: List<Comment>) {
+        commentCount.text = getString(R.string.numbet_of_comments, comments.size)
+        commentsView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = CommentAdapter(comments)
+            visibility = View.VISIBLE
+        }
     }
 
     companion object {

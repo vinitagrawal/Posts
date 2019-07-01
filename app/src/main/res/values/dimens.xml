@@ -12,6 +12,7 @@
 
     <dimen name="text_size_primary">20dp</dimen>
     <dimen name="text_size_secondary">16dp</dimen>
+    <dimen name="text_size_tertiary">12dp</dimen>
 
     <dimen name="line_spacing">4dp</dimen>
 </resources>
