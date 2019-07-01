@@ -8,5 +8,6 @@
         <item name="primaryTextView">@style/TextView.Primary</item>
         <item name="secondaryTextView">@style/TextView.Secondary</item>
         <item name="tertiaryTextView">@style/TextView.Tertiary</item>
+        <item name="primaryHeader">@style/Header.Primary</item>
     </style>
 </resources>

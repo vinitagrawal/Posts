@@ -3,4 +3,5 @@
     <attr name="primaryTextView" format="reference" />
     <attr name="secondaryTextView" format="reference" />
     <attr name="tertiaryTextView" format="reference" />
+    <attr name="primaryHeader" format="reference" />
 </resources>

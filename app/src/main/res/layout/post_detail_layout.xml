@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/postTitle"
+        style="?attr/primaryHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/gap"
+        tools:text="Title" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/gap"
+        android:layout_marginEnd="@dimen/gap">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/avatar"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/userName"
+            style="?attr/secondaryTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/gap"
+            android:layout_marginTop="@dimen/gap_small"
+            app:layout_constraintLeft_toRightOf="@id/avatar"
+            app:layout_constraintTop_toTopOf="@id/avatar"
+            tools:text="username" />
+
+        <TextView
+            android:id="@+id/emailAddress"
+            style="?attr/secondaryTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/gap_small"
+            app:layout_constraintLeft_toLeftOf="@id/userName"
+            app:layout_constraintTop_toBottomOf="@id/userName"
+            tools:text="abc@xyz.com" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/postBody"
+        style="?attr/secondaryTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/gap"
+        tools:text="Post Body" />
+
+    <TextView
+        android:id="@+id/commentCount"
+        style="?attr/tertiaryTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_margin="@dimen/gap_small"
+        tools:text="5 comments" />
+
+    <View
+        style="@style/Divider.Plain"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/gap_small" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/commentsView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/gap_small"
+        android:visibility="gone"
+        tools:listitem="@layout/comment_tile"
+        tools:visibility="visible" />
+</LinearLayout>

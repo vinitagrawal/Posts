@@ -18,6 +18,13 @@
         <item name="android:lineSpacingExtra">@dimen/line_spacing</item>
     </style>
 
+    <style name="Header.Primary" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/header_text_primary</item>
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:lineSpacingExtra">@dimen/line_spacing</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="Divider" />
 
     <style name="Divider.Plain">

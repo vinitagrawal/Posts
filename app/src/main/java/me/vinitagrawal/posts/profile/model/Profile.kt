@@ -1,6 +1,7 @@
 package me.vinitagrawal.posts.profile.model
 
 import com.google.gson.annotations.SerializedName
+import me.vinitagrawal.posts.UrlMap.Companion.AVATAR_URL
 
 data class Profile(@SerializedName("id") val id: Long,
                    @SerializedName("name") val name: String,
@@ -9,7 +10,10 @@ data class Profile(@SerializedName("id") val id: Long,
                    @SerializedName("address") val address: Address,
                    @SerializedName("phone") val phone: String,
                    @SerializedName("website") val website: String,
-                   @SerializedName("company") val company: Company)
+                   @SerializedName("company") val company: Company) {
+
+    fun getAvatarUrl() = AVATAR_URL + email
+}
 
 data class Address(@SerializedName("street") val street: String,
                    @SerializedName("city") val city: String,
