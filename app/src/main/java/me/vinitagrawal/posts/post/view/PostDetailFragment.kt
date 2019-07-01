@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.facebook.shimmer.ShimmerFrameLayout
-import kotlinx.android.synthetic.main.fragment_post_detail.*
 import me.vinitagrawal.common.core.BaseFragment
 import me.vinitagrawal.common.utils.bindView
 import me.vinitagrawal.posts.R
@@ -29,6 +28,8 @@ class PostDetailFragment : BaseFragment<PostDetailViewModel>(PostDetailViewModel
     private val loadingView by bindView<ShimmerFrameLayout>(R.id.loadingView)
     private val postDetailView by bindView<NestedScrollView>(R.id.detailLayout)
     private val userDetailsView by bindView<ConstraintLayout>(R.id.userDetails)
+    private val errorView by bindView<TextView>(R.id.errorView)
+    private val commentErrorView by bindView<TextView>(R.id.commentErrorView)
     private val postTitle by bindView<TextView>(R.id.postTitle)
     private val postBody by bindView<TextView>(R.id.postBody)
     private val avatar by bindView<AppCompatImageView>(R.id.avatar)
@@ -47,6 +48,7 @@ class PostDetailFragment : BaseFragment<PostDetailViewModel>(PostDetailViewModel
                     when (state) {
                         is Loading -> showLoadingView()
                         is LoadComplete -> hideLoadingView()
+                        is Error -> showErrorView()
                         is Data -> renderPost(state.post, state.profile, state.comments)
                     }
                 }
@@ -60,13 +62,21 @@ class PostDetailFragment : BaseFragment<PostDetailViewModel>(PostDetailViewModel
         loadingView.visibility = GONE
     }
 
+    private fun showErrorView() {
+        errorView.visibility = VISIBLE
+    }
+
+    private fun showCommentErrorView() {
+        commentErrorView.visibility = VISIBLE
+    }
+
     private fun renderPost(post: Post, profile: Profile?, comments: List<Comment>?) {
-        detailLayout.visibility = VISIBLE
+        postDetailView.visibility = VISIBLE
         postTitle.text = post.title
         postBody.text = post.body
 
         profile?.let { renderProfile(it) }
-        comments?.let { renderComments(it) }
+        comments?.let { renderComments(it) } ?: showCommentErrorView()
     }
 
     private fun renderProfile(profile: Profile) {
