@@ -46,7 +46,7 @@ class PostDetailFragment : BaseFragment<PostDetailViewModel>(PostDetailViewModel
         commentCount.text = getString(R.string.numbet_of_comments, comments.size)
         commentsView.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = CommentAdapter(comments)
+            adapter = CommentAdapter(comments, requireContext())
             visibility = View.VISIBLE
         }
     }

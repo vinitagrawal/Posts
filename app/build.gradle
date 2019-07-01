@@ -49,10 +49,12 @@ dependencies {
     implementation commonLibraries.daggerAndroidSupport
     implementation commonLibraries.room
     implementation commonLibraries.rxRoom
+    implementation commonLibraries.glide
 
     kapt commonLibraries.daggerCompiler
     kapt commonLibraries.daggerAndroidCompiler
     kapt commonLibraries.roomCompiler
+    kapt commonLibraries.glideCompiler
 
     implementation commonLibraries.lifecycle
     implementation designLibraries.constraintLayout
