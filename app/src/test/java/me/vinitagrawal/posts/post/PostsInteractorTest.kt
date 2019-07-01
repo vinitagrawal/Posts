@@ -7,7 +7,7 @@ import io.reactivex.Single
 import me.vinitagrawal.posts.post.data.PostsRepository
 import me.vinitagrawal.posts.post.model.Comment
 import me.vinitagrawal.posts.post.model.Post
-import me.vinitagrawal.posts.post.usecase.PostsInteractor
+import me.vinitagrawal.posts.post.domain.PostsInteractor
 import okhttp3.MediaType
 import okhttp3.ResponseBody
 import org.junit.After

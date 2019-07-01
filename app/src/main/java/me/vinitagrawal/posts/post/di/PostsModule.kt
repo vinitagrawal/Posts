@@ -13,8 +13,8 @@ import me.vinitagrawal.posts.post.PostsViewModel
 import me.vinitagrawal.posts.post.data.PostsRepository
 import me.vinitagrawal.posts.post.data.PostsRepositoryImpl
 import me.vinitagrawal.posts.post.data.PostsService
-import me.vinitagrawal.posts.post.usecase.PostsInteractor
-import me.vinitagrawal.posts.post.usecase.PostsUseCase
+import me.vinitagrawal.posts.post.domain.PostsInteractor
+import me.vinitagrawal.posts.post.domain.PostsUseCase
 
 @Module(includes = [PostsDepsModule::class])
 abstract class PostsModule {

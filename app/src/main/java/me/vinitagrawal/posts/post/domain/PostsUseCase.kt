@@ -1,4 +1,4 @@
-package me.vinitagrawal.posts.post.usecase
+package me.vinitagrawal.posts.post.domain
 
 import io.reactivex.Observable
 import io.reactivex.Single

@@ -8,7 +8,7 @@ import me.vinitagrawal.common.utils.Logger
 import me.vinitagrawal.posts.post.model.Post
 import me.vinitagrawal.posts.post.model.PostDetailState
 import me.vinitagrawal.posts.post.model.PostDetailState.*
-import me.vinitagrawal.posts.post.usecase.PostsUseCase
+import me.vinitagrawal.posts.post.domain.PostsUseCase
 import javax.inject.Inject
 
 class PostDetailViewModel @Inject constructor(private val postsUseCase: PostsUseCase,

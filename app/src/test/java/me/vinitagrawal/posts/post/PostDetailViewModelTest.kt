@@ -10,7 +10,7 @@ import me.vinitagrawal.posts.post.model.Comment
 import me.vinitagrawal.posts.post.model.Post
 import me.vinitagrawal.posts.post.model.PostDetailState
 import me.vinitagrawal.posts.post.model.PostDetailState.*
-import me.vinitagrawal.posts.post.usecase.PostsUseCase
+import me.vinitagrawal.posts.post.domain.PostsUseCase
 import me.vinitagrawal.posts.utils.TestObserver
 import me.vinitagrawal.posts.utils.test
 import okhttp3.MediaType
