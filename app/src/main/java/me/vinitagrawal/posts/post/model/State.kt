@@ -1,5 +1,7 @@
 package me.vinitagrawal.posts.post.model
 
+import me.vinitagrawal.posts.profile.model.Profile
+
 sealed class PostsState {
 
     object Loading : PostsState()
@@ -14,5 +16,7 @@ sealed class PostDetailState {
     object Loading : PostDetailState()
     object LoadComplete : PostDetailState()
     object Error : PostDetailState()
-    data class Data(val post: Post, val comments: List<Comment>? = null) : PostDetailState()
+    data class Data(val post: Post,
+                    val profile: Profile? = null,
+                    val comments: List<Comment>? = null) : PostDetailState()
 }

@@ -15,6 +15,7 @@ import me.vinitagrawal.posts.post.data.PostsRepositoryImpl
 import me.vinitagrawal.posts.post.data.PostsService
 import me.vinitagrawal.posts.post.domain.PostsInteractor
 import me.vinitagrawal.posts.post.domain.PostsUseCase
+import me.vinitagrawal.posts.profile.domain.ProfileUseCase
 
 @Module(includes = [PostsDepsModule::class])
 abstract class PostsModule {
@@ -33,7 +34,7 @@ class PostsDepsModule {
     @IntoMap
     @ViewModelKey(PostsViewModel::class)
     fun providesPostViewModel(postsUseCase: PostsUseCase,
-                                 logger: Logger): ViewModel {
+                              logger: Logger): ViewModel {
         return PostsViewModel(postsUseCase, logger)
     }
 
@@ -41,8 +42,9 @@ class PostsDepsModule {
     @IntoMap
     @ViewModelKey(PostDetailViewModel::class)
     fun providesPostDetailViewModel(postsUseCase: PostsUseCase,
-                                 logger: Logger): ViewModel {
-        return PostDetailViewModel(postsUseCase, logger)
+                                    profileUseCase: ProfileUseCase,
+                                    logger: Logger): ViewModel {
+        return PostDetailViewModel(postsUseCase, profileUseCase, logger)
     }
 
     @Provides

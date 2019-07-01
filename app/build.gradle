@@ -45,6 +45,7 @@ dependencies {
     implementation commonLibraries.gsonConverter
     implementation commonLibraries.okhttplogging
     implementation commonLibraries.rxAndroid
+    implementation commonLibraries.rxKotlin
 
     implementation commonLibraries.daggerAndroidSupport
     implementation commonLibraries.room
