@@ -3,23 +3,32 @@ package me.vinitagrawal.posts.post.view
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.facebook.shimmer.ShimmerFrameLayout
+import kotlinx.android.synthetic.main.fragment_post_detail.*
 import me.vinitagrawal.common.core.BaseFragment
 import me.vinitagrawal.common.utils.bindView
 import me.vinitagrawal.posts.R
 import me.vinitagrawal.posts.post.PostDetailViewModel
 import me.vinitagrawal.posts.post.model.Comment
 import me.vinitagrawal.posts.post.model.Post
-import me.vinitagrawal.posts.post.model.PostDetailState.Data
+import me.vinitagrawal.posts.post.model.PostDetailState.*
 import me.vinitagrawal.posts.profile.model.Profile
 
 class PostDetailFragment : BaseFragment<PostDetailViewModel>(PostDetailViewModel::class.java) {
 
+    private val loadingView by bindView<ShimmerFrameLayout>(R.id.loadingView)
+    private val postDetailView by bindView<NestedScrollView>(R.id.detailLayout)
+    private val userDetailsView by bindView<ConstraintLayout>(R.id.userDetails)
     private val postTitle by bindView<TextView>(R.id.postTitle)
     private val postBody by bindView<TextView>(R.id.postBody)
     private val avatar by bindView<AppCompatImageView>(R.id.avatar)
@@ -36,12 +45,23 @@ class PostDetailFragment : BaseFragment<PostDetailViewModel>(PostDetailViewModel
         viewModel.getData(arguments?.getLong(KEY_POST_ID) ?: 0)
                 .observe { state ->
                     when (state) {
+                        is Loading -> showLoadingView()
+                        is LoadComplete -> hideLoadingView()
                         is Data -> renderPost(state.post, state.profile, state.comments)
                     }
                 }
     }
 
+    private fun showLoadingView() {
+        loadingView.visibility = VISIBLE
+    }
+
+    private fun hideLoadingView() {
+        loadingView.visibility = GONE
+    }
+
     private fun renderPost(post: Post, profile: Profile?, comments: List<Comment>?) {
+        detailLayout.visibility = VISIBLE
         postTitle.text = post.title
         postBody.text = post.body
 
@@ -50,9 +70,11 @@ class PostDetailFragment : BaseFragment<PostDetailViewModel>(PostDetailViewModel
     }
 
     private fun renderProfile(profile: Profile) {
+        userDetailsView.visibility = VISIBLE
         profile.run {
             Glide.with(requireContext())
                     .load(getAvatarUrl())
+                    .placeholder(R.drawable.horizontal_shimmer)
                     .into(avatar)
 
             userName.text = username
@@ -65,7 +87,7 @@ class PostDetailFragment : BaseFragment<PostDetailViewModel>(PostDetailViewModel
         commentsView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = CommentAdapter(comments, requireContext())
-            visibility = View.VISIBLE
+            visibility = VISIBLE
         }
     }
 
