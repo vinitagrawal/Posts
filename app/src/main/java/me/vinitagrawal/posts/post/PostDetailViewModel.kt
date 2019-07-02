@@ -18,7 +18,7 @@ class PostDetailViewModel @Inject constructor(private val postsUseCase: PostsUse
                                               private val logger: Logger) : BaseViewModel() {
 
     private var postDetail: MutableLiveData<PostDetailState> = MutableLiveData()
-    private var postId: Long = 0
+    private var postId: Long = -1
 
     fun getData(postId: Long): LiveData<PostDetailState> {
         this.postId = postId

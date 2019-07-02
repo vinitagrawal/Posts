@@ -78,7 +78,7 @@
         android:id="@+id/commentErrorView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Unable to load comments"
+        android:text="@string/unable_to_load_comments"
         android:visibility="gone"
         android:layout_marginTop="@dimen/gap"
         android:layout_gravity="center"/>

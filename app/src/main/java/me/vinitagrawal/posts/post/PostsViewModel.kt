@@ -21,7 +21,6 @@ class PostsViewModel @Inject constructor(private val postsUseCase: PostsUseCase,
         return postList
     }
 
-    @SuppressLint("CheckResult")
     override fun onRender() {
         if (postList.value !is Data)
             postsUseCase.getPosts()

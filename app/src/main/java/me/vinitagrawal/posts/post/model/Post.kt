@@ -11,19 +11,15 @@ import me.vinitagrawal.posts.post.model.Post.Contract.Column.Companion.USER_ID
 import me.vinitagrawal.posts.post.model.Post.Contract.Companion.TABLE_NAME
 
 @Entity(tableName = TABLE_NAME)
-data class Post(@SerializedName("id")
-                @PrimaryKey
+data class Post(@PrimaryKey
                 @ColumnInfo(name = ID)
-                val id: Long,
-                @SerializedName("userId")
+                @SerializedName("id") val id: Long,
                 @ColumnInfo(name = USER_ID)
-                val userId: Long,
-                @SerializedName("title")
+                @SerializedName("userId") val userId: Long,
                 @ColumnInfo(name = TITLE)
-                val title: String,
-                @SerializedName("body")
+                @SerializedName("title") val title: String,
                 @ColumnInfo(name = BODY)
-                val body: String) {
+                @SerializedName("body") val body: String) {
 
     class Contract {
         companion object {

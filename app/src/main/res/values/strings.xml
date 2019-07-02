@@ -2,5 +2,6 @@
     <string name="app_name">Posts</string>
     <string name="error_text">Error</string>
     <string name="no_posts_text">No Posts</string>
-    <string name="numbet_of_comments">%d Comments</string>
+    <string name="number_of_comments">%d Comments</string>
+    <string name="unable_to_load_comments">Unable to load comments</string>
 </resources>

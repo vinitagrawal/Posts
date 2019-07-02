@@ -25,15 +25,4 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="Divider" />
-
-    <style name="Divider.Plain">
-        <item name="android:background">@drawable/divider_plain</item>
-        <item name="android:layout_height">2dp</item>
-    </style>
-
-    <style name="Shimmer">
-        <item name="android:layout_height">@dimen/shimmer_height</item>
-        <item name="android:background">@drawable/horizontal_shimmer</item>
-    </style>
 </resources>
