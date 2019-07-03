@@ -18,6 +18,15 @@ For Unit and Instrumentation tests
 - Mockito
 - RESTMock
 
+The future improvements for this project will be
+
+- Add Pagination support using the Android Architecture Paging Component to load only limited number of posts and save memory and rendering time.
+- Make pagination support Network + Local Database
+- Add support for configuration changes like device orientation etc.
+- Add Android Navigation Component to manage single activity and eaily navigate between fragments
+- Add More Detailed Instrumentation tests
+- Mature UI
+
 <p float="left">
 <img height="500" src="https://github.com/vinitagrawal/Posts/blob/master/post_flow.gif">
 <img height="500" src="https://github.com/vinitagrawal/Posts/blob/master/network_error.gif">
